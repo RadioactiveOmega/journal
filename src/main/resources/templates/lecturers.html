@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lecturers</title>
+</head>
+<body>
+Здесь отображаются преподаватели.
+<div th:each="lecturer: ${lecturers}">
+    <p th:text="${lecturer.getId() + ', ' + lecturer.getSurname + ' ' + lecturer.getName + ' ' + lecturer.getPatronymic}"></p>
+
+</div>
+</body>
+</html>
