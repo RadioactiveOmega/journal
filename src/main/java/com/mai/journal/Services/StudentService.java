@@ -15,8 +15,11 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Student getStudentById(Long id){
+    public Student getById(Long id){
         return studentRepository.findById(id)
                 .orElseThrow(() -> new NotFoundExeption("Student with id " + id +" not found"));
+    }
+    public void save(Student student){
+        studentRepository.save(student);
     }
 }

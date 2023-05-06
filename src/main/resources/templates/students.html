@@ -7,7 +7,9 @@
 <body>
 Здесь отображаются студенты.
 <div th:each="student: ${students}">
-    <p th:text="${student.getId() + ', ' + student.getSurname + ' ' + student.getName + ' ' + student.getPatronymic}"></p>
+    <p th:text="${student.getId() + ', ' + student.getSurname + ' ' + student.getName + ' ' + student.getPatronymic + ' ' + student.getGroupId}"></p>
 </div>
+<br>
+<a href="students/newStudent">Новый студент</a>
 </body>
 </html>
