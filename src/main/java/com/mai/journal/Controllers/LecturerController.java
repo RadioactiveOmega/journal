@@ -1,7 +1,6 @@
 package com.mai.journal.Controllers;
 
 import com.mai.journal.Domain.Lecturer;
-import com.mai.journal.Repos.LecturerRepository;
 import com.mai.journal.Services.LecturerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class LecturerController {
 
-    private LecturerRepository lecturerRepository;
+
     private LecturerService lecturerService;
 
     @GetMapping
@@ -34,7 +33,7 @@ public class LecturerController {
             @RequestParam(required = false) String patronymic){
 
         Lecturer lecturer = new Lecturer(name, surname, patronymic);
-        lecturerRepository.save(lecturer);
+        lecturerService.save(lecturer);
         return "redirect:/lecturers";
     }
 }
