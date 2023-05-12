@@ -18,29 +18,29 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class WebSecurityConfig extends WebSecurityConfiguration {
+public class WebSecurityConfig{
 
-    private final CustomUserDetailService customUserDetailService;
-
+    private CustomUserDetailService customUserDetailService;
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/", "/registration","/lecturers", "/lecturers/newLecturer")
+                        .permitAll()
+                        .requestMatchers("/students","/newStudent").hasAnyAuthority("USER")
+                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
                 )
-                .logout(LogoutConfigurer::permitAll);
-
+                .logout((logout) -> logout.permitAll());
         return http.build();
     }
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailService)
-                .passwordEncoder(passwordEncoder());
+        auth.userDetailsService(customUserDetailService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -48,3 +48,4 @@ public class WebSecurityConfig extends WebSecurityConfiguration {
         return new BCryptPasswordEncoder(8);
     }
 }
+

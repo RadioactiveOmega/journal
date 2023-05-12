@@ -1,14 +1,17 @@
 package com.mai.journal.Domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
+
 @Entity
+@Table(name = "groups_test")
 @Setter
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Group { //TODO доделать связи
 
     @Id

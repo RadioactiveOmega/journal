@@ -2,14 +2,20 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap-reboot.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
 </head>
 <body>
-Hello there!<br>
+
 <a href="lecturers">Lecturers</a><br>
 <a href="students">Students</a><br>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
 </form>
+
+<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

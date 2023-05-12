@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,8 +24,8 @@ public class User implements UserDetails {
     private Long id;
     @Column(name = "login", nullable = false, unique = true)
     private String login;
-    @Column(name = "pswrdHash", nullable = false)
-    private String hash;
+    @Column(name = "password", nullable = false)
+    private String password;
     @Column(name = "phoneNumber")
     private String phoneNumber;
     @Column(name = "isActive")
@@ -33,7 +34,7 @@ public class User implements UserDetails {
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     // Security
     @Override
@@ -41,9 +42,14 @@ public class User implements UserDetails {
         return roles;
     }
 
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override

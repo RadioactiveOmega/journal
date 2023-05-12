@@ -19,9 +19,22 @@ public class UserService {
        String login = user.getLogin();
        if(userRepository.findByLogin(login) != null) return false;
        user.setActive(true);
-       user.setHash(passwordEncoder.encode(user.getHash()));
+       user.setPassword(passwordEncoder.encode(user.getPassword()));
        user.getRoles().add(Role.USER);
        log.info("Saving new User {}", login);
+       userRepository.save(user);
+       log.info("Saved user.");
        return true;
    }
+    public boolean createUser(String login, String password){
+        if(userRepository.findByLogin(login) != null) return false;
+
+        User user = new User(login, passwordEncoder.encode(password));
+        user.setActive(true);
+        user.getRoles().add(Role.USER);
+        log.info("Saving new User {}", login);
+        userRepository.save(user);
+        log.info("Saved user.");
+        return true;
+    }
 }
