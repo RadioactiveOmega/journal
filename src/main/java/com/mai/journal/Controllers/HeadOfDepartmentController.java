@@ -22,10 +22,7 @@ public class HeadOfDepartmentController {
     }
 
     @GetMapping( "/registerGroup")
-    public String registerGroup(
-            Model model){
-        System.out.println("Пришло");
-
+    public String registerGroup(){
         return "registerGroup";
     }
     @PostMapping("/registerGroup")
@@ -34,11 +31,7 @@ public class HeadOfDepartmentController {
             @RequestParam("count") int count,
             Model model
     ){
-        String[] str = {"123", "456"};
         model.addAttribute("accesses", groupService.registerGroup(name, count));
-
-
-        System.out.println("lol");
         return "registerGroup";
     }
 }
