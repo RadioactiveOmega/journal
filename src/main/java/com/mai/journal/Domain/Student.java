@@ -17,10 +17,13 @@ public class Student {
     @Column(nullable = false)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "login")
+    private String login;
+
+    @Column(name = "name")
     private String name;
 
-    @Column(nullable = false)
+    @Column(name = "surname")
     private String surname;
 
     private String patronymic;
@@ -35,9 +38,8 @@ public class Student {
         this.groupId = groupId;
     }
 
-    public Student(String name, String surname, Long groupId) {
-        this.name = name;
-        this.surname = surname;
+    public Student(String login, Long groupId) {
+        this.login = login;
         this.groupId = groupId;
     }
 }

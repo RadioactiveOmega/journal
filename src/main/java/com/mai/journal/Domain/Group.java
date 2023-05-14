@@ -8,7 +8,7 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "groups_test")
+@Table(name = "groups")
 @Setter
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

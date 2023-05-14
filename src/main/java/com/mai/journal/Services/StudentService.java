@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class StudentService {
 
-    StudentRepository studentRepository;
+    private StudentRepository studentRepository;
     public Iterable<Student> getAllStudents() {
         return studentRepository.findAll();
     }
@@ -19,7 +19,15 @@ public class StudentService {
         return studentRepository.findById(id)
                 .orElseThrow(() -> new NotFoundExeption("Student with id " + id +" not found"));
     }
+
+    public long count(){
+        return studentRepository.count();
+    }
     public void save(Student student){
+        studentRepository.save(student);
+    }
+    public void save(String login, long groupId){
+        Student student = new Student(login, groupId);
         studentRepository.save(student);
     }
 }
